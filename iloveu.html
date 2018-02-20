@@ -129,9 +129,10 @@
     <script type="text/javascript" src="./js/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/count-time.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
     $(function() {
-        //var audio = $('#audio')[0];
+        /*//var audio = $('#audio')[0];
         //android  ios 内部原因 为了节省流量，规定不自动播放音频视频  
         //--创建页面监听，等待微信端页面加载完毕 触发音频播放  
         document.addEventListener('DOMContentLoaded', function () {  
@@ -151,7 +152,20 @@
                 audio.play();  
             }  
             audioAutoPlay();  
-        });  
+        });  */
+        var media = document.getElementById("audio");
+        if (!media.src) {
+            media.src = "./love.mp3";
+        }
+        media.play();
+
+        wx.config({
+            // 配置信息
+        });
+        wx.ready(function () {
+            media.src = "http://a.f265.com/project/shake-money/img/shake.mp3"
+            media.play();
+        });
 
         //设置起始日期
         countTime('2017/06/24 19:54', 'day', 'hour', 'minute', 'second');
