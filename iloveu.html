@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <audio id="audio" src="./love.mp3" autoplay="false" loop="loop"></audio>
+    <audio id="audio" src="./love.mp3" autoplay="autoplay" loop="loop"></audio>
     <div id="back">
         <div class="mask"></div>
         <!-- 设置展示的图片，github pages不能有后台程序只能一条一条手动添加了 囧 -->
@@ -132,12 +132,11 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
     $(function() {
-        //var audio = $('#audio')[0];
+        var audio = $('#audio');
         //android  ios 内部原因 为了节省流量，规定不自动播放音频视频  
         //--创建页面监听，等待微信端页面加载完毕 触发音频播放  
         document.addEventListener('DOMContentLoaded', function () {  
-            function audioAutoPlay() {  
-                var audio = document.getElementById('audio');
+            function audioAutoPlay() {
                 audio.play();  
                 document.addEventListener("WeixinJSBridgeReady", function () {  
                         audio.play();  
@@ -145,20 +144,20 @@
             }  
             audioAutoPlay();  
         });  
+       
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            WeixinJSBridge.invoke('getNetworkType', {}, function (res) {
+                audio.play();
+            });
+        }
+
         //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放  
         document.addEventListener('touchstart', function () {  
             function audioAutoPlay() {  
-                var audio = document.getElementById('audio');
                 audio.play();  
             }  
             audioAutoPlay();  
         });  
-        var media = document.getElementById("audio");
-        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
-            WeixinJSBridge.invoke('getNetworkType', {}, function (res) {
-                media.play();
-            });
-        }
 
         //设置起始日期
         countTime('2017/06/24 19:54', 'day', 'hour', 'minute', 'second');
