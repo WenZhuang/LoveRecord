@@ -154,18 +154,11 @@
             audioAutoPlay();  
         });  */
         var media = document.getElementById("audio");
-        if (!media.src) {
-            media.src = "./love.mp3";
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            WeixinJSBridge.invoke('getNetworkType', {}, function (res) {
+                media.play();
+            });
         }
-        media.play();
-
-        wx.config({
-            // 配置信息
-        });
-        wx.ready(function () {
-            media.src = "./love.mp3"
-            media.play();
-        });
 
         //设置起始日期
         countTime('2017/06/24 19:54', 'day', 'hour', 'minute', 'second');
