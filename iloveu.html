@@ -131,11 +131,12 @@
     <script type="text/javascript" src="./js/count-time.js"></script>
     <script>
     $(function() {
-        var audio = $('#audio')[0];
+        //var audio = $('#audio')[0];
         //android  ios 内部原因 为了节省流量，规定不自动播放音频视频  
         //--创建页面监听，等待微信端页面加载完毕 触发音频播放  
         document.addEventListener('DOMContentLoaded', function () {  
-            function audioAutoPlay() {  
+            function audioAutoPlay() {  ‘
+                var audio = document.getElementById('audio');
                 audio.play();  
                 document.addEventListener("WeixinJSBridgeReady", function () {  
                         audio.play();  
@@ -146,6 +147,7 @@
         //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放  
         document.addEventListener('touchstart', function () {  
             function audioAutoPlay() {  
+                var audio = document.getElementById('audio');
                 audio.play();  
             }  
             audioAutoPlay();  
@@ -183,7 +185,7 @@
             "珠海，我们在浪漫小屋的河边一起吃早茶",
             "你说你很喜欢我送你的独角兽书包",
             "澳门，你亲自给我做的早餐",
-            "在澳门大学，我你带我走过了曾经你走过了很多遍的路",
+            "在澳门大学，你带我走过了曾经你走过了很多遍的路",
             "官也街，我们喜爱这里的风景",
             "澳门的街道斜斜的，我们一起去吃了淇淋果露",
             "在葡国人的房子那里，为了这张照片我们自拍了好久",
