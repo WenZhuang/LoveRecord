@@ -131,7 +131,9 @@
     <script type="text/javascript" src="./js/count-time.js"></script>
     <script>
     $(function() {
-        $("#audio")[0].play();
+        window.addEventListener('touchstart', function(){
+            $("#audio")[0].play();
+        }, false);    
         //设置起始日期
         countTime('2017/06/24 19:54', 'day', 'hour', 'minute', 'second');
         var days = $('#day').text();
